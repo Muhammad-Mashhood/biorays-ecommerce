@@ -1,3 +1,111 @@
+:root {
+  --primary-color: #00A19C;
+  --text-color: #333;
+  --background-color: #fff;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: var(--background-color);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  color: var(--primary-color) !important;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: var(--text-color) !important;
+  font-size: 1rem;
+  margin: 0 1rem;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-icon {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+/* Hero Section */
+#hero {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+/* Product Card Styles */
+.product-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background-color: #f8f9fa;
+}
+
+.product-info {
+  padding: 15px 0;
+}
+
+.product-info h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.price {
+  font-weight: bold;
+  margin: 0;
+}
+
+.sale-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Footer Styles */
+.footer {
+  padding: 30px 0;
+  border-top: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.footer-link {
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
 .App {
   text-align: center;
 }
