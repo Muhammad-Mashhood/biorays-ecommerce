@@ -2,11 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const connectDB = require('./config/db');
 const emailRoutes = require('./routes/emailRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 // Load environment variables
 dotenv.config();
+
+// Connect to database
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
