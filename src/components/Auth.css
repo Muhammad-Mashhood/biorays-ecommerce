@@ -1,29 +1,32 @@
 .auth-container {
-  padding: 50px 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,248,255,0.95) 100%);
+  padding: 70px 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(179,230,228,0.3) 100%);
   min-height: calc(100vh - 200px);
 }
 
 .auth-card {
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
 }
 
 .auth-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .auth-header {
   color: var(--primary-color);
   font-weight: 700;
   letter-spacing: 0.5px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   position: relative;
   padding-bottom: 15px;
+  font-size: 2rem;
 }
 
 .auth-header:after {
@@ -32,39 +35,42 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 50px;
-  height: 3px;
-  background-color: var(--primary-color);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--primary-color), var(--primary-light));
   border-radius: 10px;
 }
 
 .auth-form-control {
-  border-radius: 8px;
-  padding: 12px 15px;
+  border-radius: 12px;
+  padding: 14px 18px;
   border: 2px solid #eaeaea;
   transition: all 0.3s ease;
   background-color: #f9fafb;
+  font-size: 16px;
 }
 
 .auth-form-control:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(0, 161, 156, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(0, 161, 156, 0.25);
   background-color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .auth-form-label {
   font-weight: 600;
   color: #495057;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .auth-btn {
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: 14px 20px;
+  border-radius: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
+  font-size: 16px;
   transition: all 0.3s ease;
-  background-color: var(--primary-color);
+  background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
   border: none;
   position: relative;
   overflow: hidden;
@@ -77,7 +83,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
   transition: all 0.6s ease;
 }
 
@@ -86,26 +92,41 @@
 }
 
 .auth-btn:hover {
-  background-color: #008b86;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 161, 156, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 161, 156, 0.4);
 }
 
 .auth-link {
   color: var(--primary-color);
   font-weight: 600;
   transition: all 0.3s ease;
+  position: relative;
+}
+
+.auth-link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.auth-link:hover:after {
+  width: 100%;
 }
 
 .auth-link:hover {
-  color: #008b86;
+  color: var(--primary-dark);
   text-decoration: none;
 }
 
 .auth-divider {
   display: flex;
   align-items: center;
-  margin: 25px 0;
+  margin: 30px 0;
 }
 
 .auth-divider:before,
@@ -116,31 +137,37 @@
 }
 
 .auth-divider span {
-  padding: 0 10px;
+  padding: 0 15px;
   color: #6c757d;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .social-btn {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 12px;
   border: 2px solid #eaeaea;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .social-btn:hover {
   background-color: #f8f9fa;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border-color: #d0d0d0;
 }
 
 .social-btn svg {
-  margin-right: 10px;
+  margin-right: 12px;
+  font-size: 18px;
 }
 
 /* Animation for form elements */
@@ -179,6 +206,14 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .auth-container {
-    padding: 30px 15px;
+    padding: 40px 15px;
+  }
+  
+  .auth-card {
+    border-radius: 15px;
+  }
+  
+  .auth-header {
+    font-size: 1.8rem;
   }
 }
