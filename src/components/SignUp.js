@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import './Auth.css';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -50,8 +51,11 @@ const SignUp = () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // On successful registration, you would redirect to login or dashboard
-      // history.push('/signin');
+      // On successful registration, redirect to login
+      navigate('/signin');
+      
+      // Show success toast notification
+      alert('Account created successfully! Please sign in.');
     } catch (err) {
       setError('Failed to create an account. Please try again.');
       console.error(err);

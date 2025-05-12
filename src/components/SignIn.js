@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import './Auth.css';
@@ -10,6 +10,7 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,8 +31,12 @@ const SignIn = () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // On successful login, you would redirect to dashboard or home page
-      // history.push('/dashboard');
+      // On successful login, redirect to home page
+      navigate('/');
+      
+      // Show success toast notification
+      // You can create a global toast context or use browser alert for now
+      alert('Login successful!');
     } catch (err) {
       setError('Failed to sign in. Please check your credentials.');
       console.error(err);
