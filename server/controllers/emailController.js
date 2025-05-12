@@ -1,11 +1,26 @@
 const nodemailer = require('nodemailer');
 
-// Create transporter
+// Add debug to check if environment variables are loaded
+console.log('Email credentials loaded:', !!process.env.EMAIL_USER, !!process.env.EMAIL_PASS);
+
+// Create transporter with more explicit Gmail configuration
 const transporter = nodemailer.createTransport({
-  service: process.env.EMAIL_SERVICE || 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
+  },
+  debug: true // This will output detailed debug info
+});
+
+// Test the connection
+transporter.verify(function(error, success) {
+  if (error) {
+    console.log('SMTP server connection error:', error);
+  } else {
+    console.log('SMTP server connection verified and ready');
   }
 });
 
@@ -30,12 +45,12 @@ exports.sendContactEmail = async (req, res) => {
     };
     
     // Send email
-    await transporter.sendMail(mailOptions);
-    
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.response);
     res.status(200).json({ success: true, message: 'Email sent successfully' });
   } catch (error) {
-    console.error('Email sending error:', error);
-    res.status(500).json({ success: false, message: 'Failed to send email' });
+    console.error('Email sending error details:', error);
+    res.status(500).json({ success: false, message: 'Failed to send email', error: error.message });
   }
 };
 
@@ -58,7 +73,8 @@ exports.sendSubscriptionEmail = async (req, res) => {
     };
     
     // Send email
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.response);
     
     // Also notify admin
     const adminNotification = {
@@ -68,12 +84,13 @@ exports.sendSubscriptionEmail = async (req, res) => {
       html: `<p>New subscriber: ${email}</p>`
     };
     
-    await transporter.sendMail(adminNotification);
+    const adminInfo = await transporter.sendMail(adminNotification);
+    console.log('Admin notification sent successfully:', adminInfo.response);
     
     res.status(200).json({ success: true, message: 'Subscription successful' });
   } catch (error) {
-    console.error('Email sending error:', error);
-    res.status(500).json({ success: false, message: 'Subscription failed' });
+    console.error('Email sending error details:', error);
+    res.status(500).json({ success: false, message: 'Subscription failed', error: error.message });
   }
 };
 
@@ -106,11 +123,11 @@ exports.sendPasswordResetEmail = async (req, res) => {
     };
     
     // Send email
-    await transporter.sendMail(mailOptions);
-    
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.response);
     res.status(200).json({ success: true, message: 'Reset email sent' });
   } catch (error) {
-    console.error('Email sending error:', error);
-    res.status(500).json({ success: false, message: 'Failed to send reset email' });
+    console.error('Email sending error details:', error);
+    res.status(500).json({ success: false, message: 'Failed to send reset email', error: error.message });
   }
 };
